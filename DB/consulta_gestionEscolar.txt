@@ -1,0 +1,52 @@
+drop schema gestion_escolar;
+
+create schema gestion_escolar;
+
+use gestion_escolar;
+
+create table departamento(
+	id_departamento int auto_increment primary key,
+    nombre varchar(60) not null,
+    descripcion varchar(150) not null,
+    sueldo float not null
+);
+
+create table personal(
+	id_personal int primary key auto_increment,
+    nombre varchar(100) not null,
+    fechanacimento date not null,
+    sexo varchar(20) not null,
+    id_departamento int not null,
+	FOREIGN KEY (id_departamento) REFERENCES departamento(id_departamento)
+);
+
+create table tutor(
+	id_tutor int primary key auto_increment,
+    nombre varchar(100) not null,
+    fecha_nacimiento date not null,
+    sexo varchar(20) not null
+);
+
+create table alumno(
+	id_alumno int primary key auto_increment,
+    nombre varchar(100) not null,
+    fecha_nacimiento date not null,
+    sexo varchar(20) not null,
+    promedio float not null,
+	deudor boolean not null,
+    beca boolean not null,
+    id_tutor int not null,
+    id_personal int not null,
+	FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor),
+    FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
+);
+
+create table historial(
+	id_historial int primary key auto_increment,
+    id_personal int not null, 
+    id_alumno int not null,
+    id_escolar int not null,
+    promedio float not null,
+    FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+    FOREIGN KEY (id_alumno) REFERENCES alumno(id_alumno)
+);
