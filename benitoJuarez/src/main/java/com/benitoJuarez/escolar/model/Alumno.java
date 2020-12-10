@@ -1,9 +1,11 @@
 package com.benitoJuarez.escolar.model;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class Alumno {
+public class Alumno implements Serializable{
 
 	/**
 	 * 

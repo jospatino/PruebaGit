@@ -70,11 +70,5 @@ public class Tutor {
 		this.sexo = sexo;
 	}
 
-	@Override
-	public String toString() {
-		return "Tutor [id_tutor=" + id_tutor + ", nombre=" + nombre + ", fecha_nacimiento=" + fecha_nacimiento
-				+ ", sexo=" + sexo + "]";
-	}
-
-
+	
 }
