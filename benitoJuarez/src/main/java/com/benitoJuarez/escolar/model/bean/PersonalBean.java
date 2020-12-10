@@ -12,19 +12,19 @@ public class PersonalBean implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull
+	
 	private int idPersonal;
 	
 	@Size(max = 100)
 	@NotNull
-	private String NombrePersonal;
+	private String nombrePersonal;
 	
 	@NotNull
-	private String FechaNacimientoPersonal;
+	private String fechaNacimientoPersonal;
 	
 	@Size(max = 20)
 	@NotNull
-	private String SexoPersonal;
+	private String sexoPersonal;
 	
 	@NotNull
 	private int idDepartamento;
@@ -46,28 +46,30 @@ public class PersonalBean implements Serializable{
 		this.idPersonal = idPersonal;
 	}
 
+	
+
 	public String getNombrePersonal() {
-		return NombrePersonal;
+		return nombrePersonal;
 	}
 
 	public void setNombrePersonal(String nombrePersonal) {
-		NombrePersonal = nombrePersonal;
+		this.nombrePersonal = nombrePersonal;
 	}
 
 	public String getFechaNacimientoPersonal() {
-		return FechaNacimientoPersonal;
+		return fechaNacimientoPersonal;
 	}
 
 	public void setFechaNacimientoPersonal(String fechaNacimientoPersonal) {
-		FechaNacimientoPersonal = fechaNacimientoPersonal;
+		this.fechaNacimientoPersonal = fechaNacimientoPersonal;
 	}
 
 	public String getSexoPersonal() {
-		return SexoPersonal;
+		return sexoPersonal;
 	}
 
 	public void setSexoPersonal(String sexoPersonal) {
-		SexoPersonal = sexoPersonal;
+		this.sexoPersonal = sexoPersonal;
 	}
 
 	public int getIdDepartamento() {

@@ -11,7 +11,7 @@ public class HistorialBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
+	
 	private int idHistorial;
 	
 	@NotNull
@@ -73,5 +73,6 @@ public class HistorialBean implements Serializable {
 
 	public void setPromedio(double promedio) {
 		this.promedio = promedio;
-	}	
+	}
+	
 }

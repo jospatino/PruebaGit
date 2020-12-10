@@ -21,14 +21,12 @@ public class TutorBean implements Serializable {
 	
 	@Size(max = 10)
 	@NotNull
-	private String fecha_nacimiento;
+	private String fechaNacimiento;
 	
 	@Size(max = 20)
 	@NotNull
 	private String sexo;
 
-	
-	
 	public TutorBean() {
 		super();
 	}
@@ -56,12 +54,13 @@ public class TutorBean implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getFecha_nacimiento() {
-		return fecha_nacimiento;
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacimiento(String fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public String getSexo() {
