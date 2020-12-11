@@ -39,7 +39,7 @@ public class PersonalServiceImpl implements PersonalService{
 	@Override
 	public PersonalBean getPersonal(Integer idPersonal) {
 			PersonalBean personalBean = new PersonalBean();
-			Personal personal = this.personalRepo.findById(idPersonal).orElseThrow();
+			Personal personal = this.personalRepo.findById(idPersonal).orElseThrow(null);
 			
 			personalBean.setNombrePersonal(personal.getNombrePersonal());
 			personalBean.setFechaNacimientoPersonal(personal.getFechaNacimientoPersonal().toString());
@@ -70,7 +70,7 @@ public class PersonalServiceImpl implements PersonalService{
 	@Override
 	public boolean updatePersonal(PersonalBean personalBean) {
 	
-		Personal personal = this.personalRepo.findById(personalBean.getIdPersonal()).orElseThrow();
+		Personal personal = this.personalRepo.findById(personalBean.getIdPersonal()).orElseThrow(null);
 		
 		personal.setNombrePersonal(personalBean.getNombrePersonal());
 		Date fe = new Date (personalBean.getFechaNacimientoPersonal());
@@ -85,7 +85,7 @@ public class PersonalServiceImpl implements PersonalService{
 	@Override
 	public boolean deletePersonal(Integer idPersonal) {
 		
-		Personal personal = this.personalRepo.findById(idPersonal).orElseThrow();
+		Personal personal = this.personalRepo.findById(idPersonal).orElseThrow(null);
 		
 		this.personalRepo.delete(personal);
 		return true;

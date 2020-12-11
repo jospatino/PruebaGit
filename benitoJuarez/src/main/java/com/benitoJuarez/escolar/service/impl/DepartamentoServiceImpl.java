@@ -33,7 +33,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
 	@Override
 	public DepartamentoBean getDepartamento(Integer idDepartamento) {
-		Departamento depto = this.deptoRepo.findById(idDepartamento).orElseThrow();
+		Departamento depto = this.deptoRepo.findById(idDepartamento).orElseThrow(null);
 		DepartamentoBean bean = new DepartamentoBean();
 		
 		bean.setNombreDepto(depto.getNombreDepto());
@@ -64,7 +64,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
 	@Override
 	public Boolean updateDepartamento(DepartamentoBean deptoBean) {
-		Departamento depto = this.deptoRepo.findById(deptoBean.getIdpersonal()).orElseThrow();
+		Departamento depto = this.deptoRepo.findById(deptoBean.getIdpersonal()).orElseThrow(null);
 		
 		depto.setNombreDepto(deptoBean.getNombreDepto());
 		depto.setDescripcionDpto(deptoBean.getDescripcionDepto());
@@ -76,7 +76,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
 	@Override
 	public Boolean deleteDepartamento(Integer idDepartamento) {
-		Departamento depto = this.deptoRepo.findById(idDepartamento).orElseThrow();
+		Departamento depto = this.deptoRepo.findById(idDepartamento).orElseThrow(null);
 		
 		this.deptoRepo.delete(depto);
 		return true;
