@@ -56,9 +56,11 @@ public class TutorServiceImp implements TutorService{
 			TutorBean tutorbean = new TutorBean();
 			
 			tutorbean.setId_tutor(tutorList.get(i).getIdTutor());
-			tutorbean.setNombre(tutorbeanlist.get(i).getNombre());
+			tutorbean.setNombre(tutorList.get(i).getNombre());
 			tutorbean.setSexo(tutorList.get(i).getSexo());
-			tutorbean.setFechaNacimiento(new Date().toString());
+			tutorbean.setFechaNacimiento(tutorList.get(i).getFechaNacimiento().toString());
+			
+			tutorbeanlist.add(tutorbean);
 			
 		}
 		return tutorbeanlist;
