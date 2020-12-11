@@ -64,7 +64,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
 	@Override
 	public Boolean updateDepartamento(DepartamentoBean deptoBean) {
-		Departamento depto = this.deptoRepo.findById(deptoBean.getIdpersonal()).orElseThrow(null);
+		Departamento depto = this.deptoRepo.findById(deptoBean.getIdDepartamento()).orElseThrow(null);
 		
 		depto.setNombreDepto(deptoBean.getNombreDepto());
 		depto.setDescripcionDpto(deptoBean.getDescripcionDepto());
