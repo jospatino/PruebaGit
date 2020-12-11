@@ -30,7 +30,6 @@ public class PersonalServiceImpl implements PersonalService{
 		Date fe = new Date(personalBean.getFechaNacimientoPersonal());
 		personal.setFechaNacimientoPersonal(fe);
 		personal.setSexoPersonal(personalBean.getSexoPersonal());
-		personal.setIdDepartamento(personalBean.getIdDepartamento());
 		
 		this.personalRepo.save(personal);
 		return personal.getIdPersonal();
@@ -44,7 +43,7 @@ public class PersonalServiceImpl implements PersonalService{
 			personalBean.setNombrePersonal(personal.getNombrePersonal());
 			personalBean.setFechaNacimientoPersonal(personal.getFechaNacimientoPersonal().toString());
 			personalBean.setSexoPersonal(personal.getSexoPersonal());
-			personalBean.setIdDepartamento(personal.getIdDepartamento());
+			
 			personalBean.setIdPersonal(idPersonal);
 			
 			
@@ -76,7 +75,7 @@ public class PersonalServiceImpl implements PersonalService{
 		Date fe = new Date (personalBean.getFechaNacimientoPersonal());
 		personal.setFechaNacimientoPersonal(fe);
 		personal.setSexoPersonal(personalBean.getSexoPersonal());
-		personal.setIdDepartamento(personalBean.getIdDepartamento());
+		
 		
 		this.personalRepo.save(personal);
 		return true;

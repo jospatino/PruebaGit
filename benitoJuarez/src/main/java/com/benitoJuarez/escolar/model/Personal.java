@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +30,9 @@ public class Personal {
 	@Column(name = "sexo", length = 20, nullable = false)
 	private String SexoPersonal;
 	
-	@Column(name = "id_departamento ")
-	private int idDepartamento;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_departamento")
+	private Departamento departamento;
 
 	public Personal() {
 		super();
@@ -71,14 +75,15 @@ public class Personal {
 		SexoPersonal = sexoPersonal;
 	}
 
-	public int getIdDepartamento() {
-		return idDepartamento;
+	public Departamento getDepartamento() {
+		return departamento;
 	}
 
-	public void setIdDepartamento(int idDepartamento) {
-		this.idDepartamento = idDepartamento;
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
 
+	
 	
 	
 	

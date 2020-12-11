@@ -1,13 +1,13 @@
 package com.benitoJuarez.escolar.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,9 +28,9 @@ public class Departamento {
 	@Column(name = "sueldo", nullable = false)
 	private float sueldoDepto;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_personal")
-	private int idPersonal;
+	
+	@OneToMany(mappedBy = "departamento")
+	private List<Personal> personales;
 
 	public Departamento() {
 		super();
@@ -73,13 +73,15 @@ public class Departamento {
 		this.sueldoDepto = sueldoDepto;
 	}
 
-	public int getIdPersonal() {
-		return idPersonal;
+	public List<Personal> getPersonales() {
+		return personales;
 	}
 
-	public void setIdPersonal(int idPersonal) {
-		this.idPersonal = idPersonal;
+	public void setPersonales(List<Personal> personales) {
+		this.personales = personales;
 	}
+
+	
 	
 	
 	
