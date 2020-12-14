@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benitoJuarez.escolar.model.Departamento;
+import com.benitoJuarez.escolar.model.Personal;
 import com.benitoJuarez.escolar.model.bean.DepartamentoBean;
+import com.benitoJuarez.escolar.model.bean.PersonalBean;
+import com.benitoJuarez.escolar.model.bean.PersonalDepto;
 import com.benitoJuarez.escolar.repository.DepartamentoRepository;
 import com.benitoJuarez.escolar.repository.PersonalRepo;
 import com.benitoJuarez.escolar.service.DepartamentoService;
@@ -108,7 +111,45 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 				
 		return res;
 	}
-	
-	
 
+	public List<PersonalBean> getPersonaDepartamento(Integer idDeprtamento) {
+		List<Personal> perlist = this.personalRepo.findAll();
+		List<PersonalBean> perbean = new ArrayList<>();
+		
+		for (Personal personal : perlist) {
+			if(personal.getDepartamento().getIdDepartamento() == idDeprtamento) {
+				PersonalBean temp = new PersonalBean();
+				
+				temp.setIdPersonal(personal.getIdPersonal());
+				temp.setNombrePersonal(personal.getNombrePersonal());
+				temp.setSexoPersonal(personal.getSexoPersonal());
+				temp.setFechaNacimientoPersonal(personal.getFechaNacimientoPersonal().toString());
+				
+				perbean.add(temp);
+			}
+		}		
+		return perbean;
+	}
+
+
+	public List<PersonalBean> getPersonalDepto() {
+		List<Departamento> deptolist = this.deptoRepo.findAll();
+		List<PersonalBean> perbeanlist  = new ArrayList<>();
+		
+		for(Departamento depto: deptolist) {
+	
+			for (Personal per: depto.getPersonales()) {
+				PersonalBean perbean = new PersonalBean();
+				
+				perbean.setNombrePersonal(per.getNombrePersonal());
+				perbean.setIdDepartamento(per.getDepartamento().getIdDepartamento());
+				perbean.setNombrePersonal(per.getNombrePersonal());
+				perbean.setSexoPersonal(per.getSexoPersonal());
+				
+				perbeanlist.add(perbean);
+			}
+		}
+		return perbeanlist;
+	}
+	
 }

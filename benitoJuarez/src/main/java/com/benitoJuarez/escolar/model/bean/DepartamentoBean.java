@@ -1,6 +1,7 @@
 package com.benitoJuarez.escolar.model.bean;
 
 import java.io.Serializable;
+import java.util.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,7 +28,7 @@ public class DepartamentoBean implements Serializable{
 	@NotNull
 	private float sueldoTotal;
 	
-	private int idpersonal;
+	List<PersonalBean> perlist;
 
 	public DepartamentoBean() {
 		super();
@@ -78,13 +79,15 @@ public class DepartamentoBean implements Serializable{
 		this.sueldoTotal = sueldoTotal;
 	}
 
-	public int getIdpersonal() {
-		return idpersonal;
+	public List<PersonalBean> getPerlist() {
+		return perlist;
 	}
 
-	public void setIdpersonal(int idpersonal) {
-		this.idpersonal = idpersonal;
+	public void setPerlist(List<PersonalBean> perlist) {
+		this.perlist = perlist;
 	}
+
+
 	
 }
 

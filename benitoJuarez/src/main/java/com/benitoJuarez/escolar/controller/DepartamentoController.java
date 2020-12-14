@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.benitoJuarez.escolar.model.bean.DepartamentoBean;
+import com.benitoJuarez.escolar.model.bean.PersonalBean;
 import com.benitoJuarez.escolar.service.DepartamentoService;
 
 @RestController
@@ -25,6 +26,7 @@ public class DepartamentoController {
 	
 	@Autowired
 	DepartamentoService deptoService;
+	
 	
 	@PostMapping("/crear")
 	public ResponseEntity<Integer> crearDepartamento(@Valid @RequestBody DepartamentoBean deptoBean){
@@ -50,4 +52,25 @@ public class DepartamentoController {
 	public ResponseEntity<Boolean> eliminarDeartamento(@PathVariable("idDepartamento") Integer idDepartamento){
 		return new ResponseEntity<>(this.deptoService.deleteDepartamento(idDepartamento),HttpStatus.OK);
 	}
+	
+	@GetMapping("/nomina")
+	public ResponseEntity<Float> nominaDepartamento(){
+		return new ResponseEntity<>(this.deptoService.getNominaDepartamento(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/nomina/{idDepartamento}")
+	public ResponseEntity<Float> nominaDeprtamento(){
+		return new ResponseEntity<>(this.deptoService.getNominaDepartamento(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/personadepto/{idDepartamento}")
+	public ResponseEntity<List<PersonalBean>> buscarPersonal(@PathVariable("idDepartamento") Integer idDepartamento){
+		return new ResponseEntity<>(this.deptoService.getPersonaDepartamento(idDepartamento),HttpStatus.OK);
+	}
+	
+	@GetMapping("/personaldepto")
+	public ResponseEntity<List<PersonalBean>> buscarPersonalDepto(){
+		return new ResponseEntity<>(this.deptoService.getPersonalDepto(),HttpStatus.OK);
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.benitoJuarez.escolar.service;
 import java.util.*;
 
 import com.benitoJuarez.escolar.model.bean.DepartamentoBean;
+import com.benitoJuarez.escolar.model.bean.PersonalBean;
 
 public interface DepartamentoService {
 
@@ -19,5 +20,9 @@ public interface DepartamentoService {
 	public Float getNominaDepartamento();
 	
 	public Float getNominaDepartamento(Integer idDepartamento);
+	
+	public List<PersonalBean> getPersonaDepartamento(Integer idDepartamento);
+	
+	public List<PersonalBean> getPersonalDepto();
 	
 }
