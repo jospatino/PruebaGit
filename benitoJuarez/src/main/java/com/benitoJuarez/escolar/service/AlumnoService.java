@@ -14,6 +14,12 @@ public interface AlumnoService {
 	
 	public Boolean updateAlumnos(AlumnoBean alumnobean);
 	
-	public Boolean deleteAlumno(Integer idAlumno); 
+	public Boolean deleteAlumno(Integer idAlumno);
+	
+	public List<AlumnoBean>  aLumnosReporbados();
+	
+	public List<AlumnoBean>  alumnosBecados();
+	
+	public List<AlumnoBean>  alumnodeudores();
 	
 }

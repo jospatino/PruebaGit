@@ -96,7 +96,7 @@ public class AlumnoImpl implements AlumnoService{
 			listaAlumnosBean.add(alumnobean);
 			
 		}
-		return null;
+		return listaAlumnosBean;
 	}
 
 	@Override
@@ -129,6 +129,75 @@ public class AlumnoImpl implements AlumnoService{
 		Alumno alumno = this.alumnorepo.findById(idAlumno).orElseThrow(null);
 		this.alumnorepo.delete(alumno);
 		return true;
+	}
+
+	@Override
+	public List<AlumnoBean> aLumnosReporbados() {
+		List<Alumno> listaAlumnos = this.alumnorepo.findAll();
+		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
+		for (Alumno alumno : listaAlumnos) {
+			AlumnoBean alumnobean = new AlumnoBean();
+			if (alumno.getPromedioAlumno()<7.5) {
+				
+				alumnobean.setBecaAlumno(alumno.isBecaAlumno());
+				alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
+				alumnobean.setNameAlumno(alumno.getNameAlumno());
+				alumnobean.setFechaNacAlumno(alumno.getFechaNacAlumno().toString());
+				alumnobean.setPromedioAlumno(alumno.getPromedioAlumno());
+				alumnobean.setSexoAlumno(alumno.getSexoAlumno());
+				alumnobean.setIdTutor(alumno.getTutor().getIdTutor());
+				alumnobean.setIdPersonal(alumno.getPersonal().getIdPersonal());
+				
+				listaAlumnosBean.add(alumnobean);
+			}
+		}
+		return listaAlumnosBean;
+	}
+
+	@Override
+	public List<AlumnoBean> alumnosBecados() {
+		List<Alumno> listaAlumnos = this.alumnorepo.findAll();
+		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
+		for (Alumno alumno : listaAlumnos) {
+			AlumnoBean alumnobean = new AlumnoBean();
+			if (alumno.isBecaAlumno()) {
+				
+				alumnobean.setBecaAlumno(alumno.isBecaAlumno());
+				alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
+				alumnobean.setNameAlumno(alumno.getNameAlumno());
+				alumnobean.setFechaNacAlumno(alumno.getFechaNacAlumno().toString());
+				alumnobean.setPromedioAlumno(alumno.getPromedioAlumno());
+				alumnobean.setSexoAlumno(alumno.getSexoAlumno());
+				alumnobean.setIdTutor(alumno.getTutor().getIdTutor());
+				alumnobean.setIdPersonal(alumno.getPersonal().getIdPersonal());
+				
+				listaAlumnosBean.add(alumnobean);
+			}
+		}
+		return listaAlumnosBean;
+	}
+
+	@Override
+	public List<AlumnoBean> alumnodeudores() {
+		List<Alumno> listaAlumnos = this.alumnorepo.findAll();
+		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
+		for (Alumno alumno : listaAlumnos) {
+			AlumnoBean alumnobean = new AlumnoBean();
+			if (alumno.isDeudorAlumno()) {
+				
+				alumnobean.setBecaAlumno(alumno.isBecaAlumno());
+				alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
+				alumnobean.setNameAlumno(alumno.getNameAlumno());
+				alumnobean.setFechaNacAlumno(alumno.getFechaNacAlumno().toString());
+				alumnobean.setPromedioAlumno(alumno.getPromedioAlumno());
+				alumnobean.setSexoAlumno(alumno.getSexoAlumno());
+				alumnobean.setIdTutor(alumno.getTutor().getIdTutor());
+				alumnobean.setIdPersonal(alumno.getPersonal().getIdPersonal());
+				
+				listaAlumnosBean.add(alumnobean);
+			}
+		}
+		return listaAlumnosBean;
 	}
 
 }
