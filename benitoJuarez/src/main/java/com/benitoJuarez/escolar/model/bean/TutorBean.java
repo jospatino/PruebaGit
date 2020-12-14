@@ -22,7 +22,7 @@ public class TutorBean implements Serializable {
 	
 	@Size(max = 10)
 	@NotNull
-	private String fechaNacimiento;
+	private String fecha_nacimiento;
 	
 	@Size(max = 20)
 	@NotNull
