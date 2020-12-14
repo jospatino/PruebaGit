@@ -83,8 +83,4 @@ public class Personal {
 		this.departamento = departamento;
 	}
 
-	
-	
-	
-	
 }
