@@ -22,6 +22,4 @@ public interface HistorialService {
 	
 	public PromedioBean obtenerPromedioIndividual(int idEscolar) throws Exception;
 	
-	public List<HistorialBean> alumnosReprobados();
-	
 }

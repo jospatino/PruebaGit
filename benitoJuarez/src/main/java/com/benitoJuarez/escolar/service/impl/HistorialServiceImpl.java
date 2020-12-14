@@ -137,6 +137,7 @@ public class HistorialServiceImpl implements HistorialService {
 		
 		PromedioGral gral = new PromedioGral();
 		double promedio = historial.stream().mapToDouble(z->z.getPromedio()).sum();
+		promedio = promedio / historial.size();
 		gral.setTotalPromedio(promedio);
 		
 		return gral;
@@ -153,14 +154,10 @@ public class HistorialServiceImpl implements HistorialService {
 		PromedioBean bean = new PromedioBean();
 		bean.setCantidadAlumnos(historial.size());
 		double promedio = historial.stream().mapToDouble(z->z.getPromedio()).sum();
+		promedio = promedio / historial.size();
 		bean.setPromedio(promedio);
 		bean.setIdEscolar(idEscolar);
 		return bean;
-	}
-
-	@Override
-	public List<HistorialBean> alumnosReprobados() {
-		return null;
 	}
 
 }
