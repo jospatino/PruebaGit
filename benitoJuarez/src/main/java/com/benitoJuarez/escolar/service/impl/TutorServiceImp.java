@@ -37,7 +37,7 @@ public class TutorServiceImp implements TutorService{
 	@Override
 	public TutorBean getTutorBean(Integer idTutor) {
 		TutorBean tutorBean = new TutorBean();
-		Tutor tutor = this.tutorrepository.findById(idTutor).orElseThrow();
+		Tutor tutor = this.tutorrepository.findById(idTutor).orElseThrow(null);
 		
 		tutorBean.setFechaNacimiento(new Date().toString());
 		tutorBean.setSexo(tutor.getSexo());
@@ -56,9 +56,11 @@ public class TutorServiceImp implements TutorService{
 			TutorBean tutorbean = new TutorBean();
 			
 			tutorbean.setId_tutor(tutorList.get(i).getIdTutor());
-			tutorbean.setNombre(tutorbeanlist.get(i).getNombre());
+			tutorbean.setNombre(tutorList.get(i).getNombre());
 			tutorbean.setSexo(tutorList.get(i).getSexo());
-			tutorbean.setFechaNacimiento(new Date().toString());
+			tutorbean.setFechaNacimiento(tutorList.get(i).getFechaNacimiento().toString());
+			
+			tutorbeanlist.add(tutorbean);
 			
 		}
 		return tutorbeanlist;
@@ -66,7 +68,7 @@ public class TutorServiceImp implements TutorService{
 
 	@Override
 	public Boolean updateTutor(TutorBean tutorBean) {
-Tutor tutor = this.tutorrepository.findById(tutorBean.getId_tutor()).orElseThrow();
+		Tutor tutor = this.tutorrepository.findById(tutorBean.getId_tutor()).orElseThrow(null);
 		
 		tutor.setNombre(tutorBean.getNombre());
 		tutor.setSexo(tutorBean.getSexo());
@@ -77,7 +79,7 @@ Tutor tutor = this.tutorrepository.findById(tutorBean.getId_tutor()).orElseThrow
 
 	@Override
 	public Boolean delateTutor(Integer idTutor) {
-		Tutor tutor = this.tutorrepository.findById(idTutor).orElseThrow();
+		Tutor tutor = this.tutorrepository.findById(idTutor).orElseThrow(null);
 		this.tutorrepository.delete(tutor);
 		return true;
 	}

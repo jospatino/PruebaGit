@@ -2,9 +2,12 @@ package com.benitoJuarez.escolar.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,17 +19,19 @@ public class Historial {
 	@Column(name = "id_historial")
 	private int idHistorial;
 	
-	@Column(name = "id_personal", nullable = false)
-	private int idPersonal;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_personal")
+	private Personal idPersonal;
 	
-	@Column(name = "id_alumno", nullable = false)
-	private int idAlumno;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_alumno")
+	private Alumno idAlumno;
 	
 	@Column(name = "id_escolar", nullable = false)
 	private int idEscolar;
 	
 	@Column(name = "promedio", nullable = false)
-	private float promedio;
+	private double promedio;
 	
 	public Historial() {
 		
@@ -45,19 +50,19 @@ public class Historial {
 		this.idHistorial = idHistorial;
 	}
 
-	public int getIdPersonal() {
+	public Personal getIdPersonal() {
 		return idPersonal;
 	}
 
-	public void setIdPersonal(int idPersonal) {
+	public void setIdPersonal(Personal idPersonal) {
 		this.idPersonal = idPersonal;
 	}
 
-	public int getIdAlumno() {
+	public Alumno getIdAlumno() {
 		return idAlumno;
 	}
 
-	public void setIdAlumno(int idAlumno) {
+	public void setIdAlumno(Alumno idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
@@ -69,11 +74,11 @@ public class Historial {
 		this.idEscolar = idEscolar;
 	}
 
-	public float getPromedio() {
+	public double getPromedio() {
 		return promedio;
 	}
 
-	public void setPromedio(float promedio) {
+	public void setPromedio(double promedio) {
 		this.promedio = promedio;
 	} 
 

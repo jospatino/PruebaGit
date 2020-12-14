@@ -28,7 +28,6 @@ public class Departamento {
 	@Column(name = "sueldo", nullable = false)
 	private float sueldoDepto;
 	
-	
 	@OneToMany(mappedBy = "departamento")
 	private List<Personal> personales;
 
@@ -80,9 +79,4 @@ public class Departamento {
 	public void setPersonales(List<Personal> personales) {
 		this.personales = personales;
 	}
-
-	
-	
-	
-	
 }

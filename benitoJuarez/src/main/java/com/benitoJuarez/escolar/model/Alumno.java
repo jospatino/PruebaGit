@@ -1,43 +1,58 @@
 package com.benitoJuarez.escolar.model;
 
-import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-public class Alumno implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Entity
+@Table(name ="alumno")
+public class Alumno {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_alumno")
 	private int idAlumno;
-	@Size(max = 100)
-	@NotNull
+	@Column(name = "nombre",length = 60, nullable = false)
 	private String nameAlumno;
-	
-	@Size(max = 10)
-	@NotNull
-	private String fechaNacAlumno;
-	@Size(max = 20)
-	@NotNull
+	@Column(name = "fecha_nacimiento", nullable = false)
+	private Date fechaNacAlumno;
+	@Column(name = "sexo", length = 6, nullable = false)
 	private String sexoAlumno;
-	@NotNull
+	@Column(name = "promedio", nullable = false)
 	private float promedioAlumno;
-	@NotNull
+	@Column(name = "deudor", nullable = false)
 	private boolean deudorAlumno;
-	@NotNull
+	@Column(name = "beca", nullable = false)
 	private boolean becaAlumno;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tutor")
+	private Tutor tutor;
+	
+	//relacion agregada Verificar ok
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_personal")
+	private Personal personal;
+	
+	
 	public Alumno() {
+		super();
 	}
 
 	public Alumno(int idAlumno) {
+		super();
 		this.idAlumno = idAlumno;
 	}
 
-	
+
+
 	public int getIdAlumno() {
 		return idAlumno;
 	}
@@ -54,11 +69,11 @@ public class Alumno implements Serializable{
 		this.nameAlumno = nameAlumno;
 	}
 
-	public String getFechaNacAlumno() {
+	public Date getFechaNacAlumno() {
 		return fechaNacAlumno;
 	}
 
-	public void setFechaNacAlumno(String fechaNacAlumno) {
+	public void setFechaNacAlumno(Date fechaNacAlumno) {
 		this.fechaNacAlumno = fechaNacAlumno;
 	}
 
@@ -93,6 +108,23 @@ public class Alumno implements Serializable{
 	public void setBecaAlumno(boolean becaAlumno) {
 		this.becaAlumno = becaAlumno;
 	}
+
+	public Tutor getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
+
+	public Personal getPersonal() {
+		return personal;
+	}
+
+	public void setPersonal(Personal personal) {
+		this.personal = personal;
+	}
 	
 	
-}
+	
+}	

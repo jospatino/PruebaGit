@@ -18,7 +18,7 @@ public class HistorialController {
 	private HistorialService historialServ;
 	
 	@PostMapping("/guardar")
-	public ResponseEntity<Integer> guardarHistorial(HistorialBean bean){
+	public ResponseEntity<Integer> guardarHistorial(HistorialBean bean) throws Exception{
 		return new ResponseEntity<>(this.historialServ.guardarHistorial(bean), HttpStatus.OK);
 	}
 	
