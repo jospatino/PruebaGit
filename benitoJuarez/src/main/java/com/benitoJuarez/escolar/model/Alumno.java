@@ -1,8 +1,6 @@
 package com.benitoJuarez.escolar.model;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,7 +33,7 @@ public class Alumno {
 	private boolean becaAlumno;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idTutor")
+	@JoinColumn(name = "id_tutor")
 	private Tutor tutor;
 	
 	//relacion agregada Verificar ok
@@ -111,5 +108,23 @@ public class Alumno {
 	public void setBecaAlumno(boolean becaAlumno) {
 		this.becaAlumno = becaAlumno;
 	}
+
+	public Tutor getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
+
+	public Personal getPersonal() {
+		return personal;
+	}
+
+	public void setPersonal(Personal personal) {
+		this.personal = personal;
+	}
+	
+	
 	
 }	

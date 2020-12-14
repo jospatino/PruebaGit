@@ -31,6 +31,10 @@ public class AlumnoBean implements Serializable {
 	@NotNull
 	private boolean becaAlumno;
 	
+	private int idTutor;
+	
+	private int idPersonal;
+	
 	public AlumnoBean() {
 		super();
 	}
@@ -94,6 +98,22 @@ public class AlumnoBean implements Serializable {
 
 	public void setBecaAlumno(boolean becaAlumno) {
 		this.becaAlumno = becaAlumno;
+	}
+
+	public int getIdTutor() {
+		return idTutor;
+	}
+
+	public void setIdTutor(int idTutor) {
+		this.idTutor = idTutor;
+	}
+
+	public int getIdPersonal() {
+		return idPersonal;
+	}
+
+	public void setIdPersonal(int idPersonal) {
+		this.idPersonal = idPersonal;
 	}
 	
 	

@@ -1,6 +1,6 @@
 package com.benitoJuarez.escolar.service.impl;
 
-import java.time.temporal.TemporalUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.benitoJuarez.escolar.model.Alumno;
+import com.benitoJuarez.escolar.model.Personal;
+import com.benitoJuarez.escolar.model.Tutor;
 import com.benitoJuarez.escolar.model.bean.AlumnoBean;
+
 import com.benitoJuarez.escolar.repository.AlumnoRepo;
+import com.benitoJuarez.escolar.repository.PersonalRepo;
+import com.benitoJuarez.escolar.repository.TutorRepository;
 import com.benitoJuarez.escolar.service.AlumnoService;
+
 
 @Service
 @Transactional
@@ -20,6 +26,12 @@ public class AlumnoImpl implements AlumnoService{
 
 	@Autowired
 	AlumnoRepo alumnorepo;
+	
+	@Autowired
+	private TutorRepository tutorrepository;
+	
+	@Autowired
+	private PersonalRepo  personalRepository;
 	
 	@Override
 	public Integer crearAlumno(AlumnoBean alumnoBean) {
@@ -30,32 +42,93 @@ public class AlumnoImpl implements AlumnoService{
 		alumno.setPromedioAlumno(alumnoBean.getPromedioAlumno());
 		alumno.setDeudorAlumno(alumnoBean.isDeudorAlumno());
 		alumno.setBecaAlumno(alumnoBean.isBecaAlumno());
+		/*
+		 * */
+		//verificar funcuinanmiento
+		Tutor tutor = this.tutorrepository.findById(alumnoBean.getIdTutor()).orElseThrow(null);
+		alumno.setTutor(tutor);
 		
-		return null;
+		//verificar funcionamiento
+		Personal personal = this.personalRepository.findById(alumnoBean.getIdPersonal()).orElseThrow(null);
+		alumno.setPersonal(personal);
+		
+		alumnorepo.save(alumno);
+		return alumno.getIdAlumno();
 	}
 
 	@Override
 	public AlumnoBean getAlumno(Integer idAlumno) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Alumno alumno =alumnorepo.findById(idAlumno).orElseThrow(null);
+		
+		AlumnoBean alumnobean = new AlumnoBean();
+		
+		alumnobean.setIdAlumno(alumno.getIdAlumno());
+		alumnobean.setBecaAlumno(alumno.isBecaAlumno());
+		alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
+		alumnobean.setNameAlumno(alumno.getNameAlumno());
+		alumnobean.setFechaNacAlumno(alumno.getFechaNacAlumno().toString());
+		alumnobean.setPromedioAlumno(alumno.getPromedioAlumno());
+		alumnobean.setSexoAlumno(alumno.getSexoAlumno());
+		alumnobean.setIdTutor(alumno.getTutor().getIdTutor());
+		alumnobean.setIdPersonal(alumno.getPersonal().getIdPersonal());
+		
+		
+		return alumnobean;
 	}
 
 	@Override
 	public List<AlumnoBean> getAlumnos() {
-		// TODO Auto-generated method stub
+		List<Alumno> listaAlumnos = this.alumnorepo.findAll();
+		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
+		for (Alumno alumno : listaAlumnos) {
+			AlumnoBean alumnobean = new AlumnoBean();
+			
+			alumnobean.setBecaAlumno(alumno.isBecaAlumno());
+			alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
+			alumnobean.setNameAlumno(alumno.getNameAlumno());
+			alumnobean.setFechaNacAlumno(alumno.getFechaNacAlumno().toString());
+			alumnobean.setPromedioAlumno(alumno.getPromedioAlumno());
+			alumnobean.setSexoAlumno(alumno.getSexoAlumno());
+			alumnobean.setIdTutor(alumno.getTutor().getIdTutor());
+			alumnobean.setIdPersonal(alumno.getPersonal().getIdPersonal());
+			
+			listaAlumnosBean.add(alumnobean);
+			
+		}
 		return null;
 	}
 
 	@Override
-	public Boolean updateAlumnos(AlumnoBean alumnobean) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean updateAlumnos(AlumnoBean alumnoBean) {
+		
+		Alumno alumno = this.alumnorepo.findById(alumnoBean.getIdAlumno()).orElseThrow(null) ;
+		alumno.setNameAlumno(alumnoBean.getNameAlumno());
+		alumno.setFechaNacAlumno(new Date(alumnoBean.getFechaNacAlumno()));
+		alumno.setSexoAlumno(alumnoBean.getSexoAlumno());
+		alumno.setPromedioAlumno(alumnoBean.getPromedioAlumno());
+		alumno.setDeudorAlumno(alumnoBean.isDeudorAlumno());
+		alumno.setBecaAlumno(alumnoBean.isBecaAlumno());
+		/*
+		 * */
+		//verificar funcuinanmiento
+		Tutor tutor = this.tutorrepository.findById(alumnoBean.getIdTutor()).orElseThrow(null);
+		alumno.setTutor(tutor);
+		
+		//verificar funcionamiento
+		Personal personal = this.personalRepository.findById(alumnoBean.getIdPersonal()).orElseThrow(null);
+		alumno.setPersonal(personal);
+		
+		alumnorepo.save(alumno);
+		
+		return true;
 	}
 
 	@Override
 	public Boolean deleteAlumno(Integer idAlumno) {
-		// TODO Auto-generated method stub
-		return null;
+		Alumno alumno = this.alumnorepo.findById(idAlumno).orElseThrow(null);
+		this.alumnorepo.delete(alumno);
+		return true;
 	}
 
 }
