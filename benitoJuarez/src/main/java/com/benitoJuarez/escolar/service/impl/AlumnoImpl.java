@@ -135,7 +135,7 @@ public class AlumnoImpl implements AlumnoService{
 	@Override
 	public List<AlumnoBean> aLumnosReporbados() {
 		List<Alumno> listaAlumnos = this.alumnorepo.findAll().
-				stream().filter(z->z.getPromedioAlumno()>7.5).collect(Collectors.toList());;
+				stream().filter(z->z.getPromedioAlumno()<7.5).collect(Collectors.toList());;
 			
 		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
 		for (Alumno alumno : listaAlumnos) {

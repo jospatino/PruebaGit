@@ -53,4 +53,18 @@ public class AlumnoController   {
 		return new ResponseEntity<>(this.alumnoService.deleteAlumno(idAlumno),HttpStatus.OK);
 	}
 	
+	@GetMapping("/alumnosreprobados")
+	public ResponseEntity<List<AlumnoBean>> aLumnosReporbados (){
+		return new ResponseEntity<>(this.alumnoService.aLumnosReporbados(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/alumnosbecados")
+	public ResponseEntity<List<AlumnoBean>> alumnosBecados (){
+		return new ResponseEntity<>(this.alumnoService.alumnosBecados(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/alumnodeudores")
+	public ResponseEntity<List<AlumnoBean>> alumnodeudores (){
+		return new ResponseEntity<>(this.alumnoService.alumnodeudores(),HttpStatus.OK);
+	}
 }
