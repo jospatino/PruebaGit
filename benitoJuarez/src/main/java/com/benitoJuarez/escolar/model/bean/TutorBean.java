@@ -60,11 +60,11 @@ public class TutorBean implements Serializable {
 
 
 	public String getFechaNacimiento() {
-		return fechaNacimiento;
+		return fecha_nacimiento;
 	}
 
 	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+		this.fecha_nacimiento = fechaNacimiento;
 	}
 
 	public String getSexo() {

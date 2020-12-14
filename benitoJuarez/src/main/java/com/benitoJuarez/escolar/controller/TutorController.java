@@ -55,4 +55,9 @@ public class TutorController {
 		return new ResponseEntity<>(this.tutorService.delateTutor(idTutor),HttpStatus.OK);
 	}
 	
+	@GetMapping("/buscarAlumno")
+	public ResponseEntity<List<TutorBean>> buscarAlumno(){
+		return new ResponseEntity<> (this.tutorService.getAlumnos(),HttpStatus.OK);
+	}
+	
 }

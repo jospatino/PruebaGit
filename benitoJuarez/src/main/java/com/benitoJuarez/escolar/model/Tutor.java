@@ -24,8 +24,8 @@ public class Tutor {
 	@Column(name = "nombre", length = 100, nullable = false)
 	private String nombre;
 	
-	@Column(name = "fechaNacimiento", length = 10, nullable = false)
-	private Date fecha_nacimiento;
+	@Column(name = "fecha_nacimiento", length = 10, nullable = false)
+	private Date fechaNacimiento;
 	
 	@Column(name = "sexo", length = 20, nullable = false)
 	private String sexo;
@@ -40,17 +40,17 @@ public class Tutor {
 
 	public Tutor(int idTutor) {
 		super();
-		this.idTutor = idTutor;
+		this.id_tutor = idTutor;
 	}
 
 
 	public int getIdTutor() {
-		return idTutor;
+		return id_tutor;
 	}
 
 
 	public void setIdTutor(int idTutor) {
-		this.idTutor = idTutor;
+		this.id_tutor = idTutor;
 	}
 
 
