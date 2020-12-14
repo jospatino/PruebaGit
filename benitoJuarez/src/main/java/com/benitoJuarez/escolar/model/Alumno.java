@@ -1,12 +1,17 @@
 package com.benitoJuarez.escolar.model;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +34,16 @@ public class Alumno {
 	private boolean deudorAlumno;
 	@Column(name = "beca", nullable = false)
 	private boolean becaAlumno;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idTutor")
+	private Tutor tutor;
+	
+	//relacion agregada Verificar ok
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_personal")
+	private Personal personal;
+	
 	
 	public Alumno() {
 		super();

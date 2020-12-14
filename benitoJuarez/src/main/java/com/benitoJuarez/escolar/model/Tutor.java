@@ -2,12 +2,14 @@ package com.benitoJuarez.escolar.model;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +29,9 @@ public class Tutor {
 	
 	@Column(name = "sexo", length = 20, nullable = false)
 	private String sexo;
-
+	
+	@OneToMany(mappedBy = "Alumno")
+	private List<Alumno> alumnos;
 	
 	public Tutor() {
 		super();
