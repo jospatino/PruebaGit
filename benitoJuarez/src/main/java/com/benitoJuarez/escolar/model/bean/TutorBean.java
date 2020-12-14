@@ -1,6 +1,7 @@
 package com.benitoJuarez.escolar.model.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,6 +28,9 @@ public class TutorBean implements Serializable {
 	@NotNull
 	private String sexo;
 
+	private List<AlumnoBean> alumno;
+	
+	
 	public TutorBean() {
 		super();
 	}
@@ -69,6 +73,14 @@ public class TutorBean implements Serializable {
 
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+
+	public List<AlumnoBean> getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(List<AlumnoBean> alumno) {
+		this.alumno = alumno;
 	}
 
 	

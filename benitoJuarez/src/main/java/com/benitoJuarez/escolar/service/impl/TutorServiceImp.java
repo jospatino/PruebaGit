@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.benitoJuarez.escolar.model.Alumno;
 import com.benitoJuarez.escolar.model.Tutor;
+import com.benitoJuarez.escolar.model.bean.AlumnoBean;
 import com.benitoJuarez.escolar.model.bean.TutorBean;
+import com.benitoJuarez.escolar.repository.AlumnoRepo;
 import com.benitoJuarez.escolar.repository.TutorRepository;
 import com.benitoJuarez.escolar.service.TutorService;
 
@@ -20,6 +23,8 @@ public class TutorServiceImp implements TutorService{
 
 	@Autowired
 	private TutorRepository tutorrepository;
+	@Autowired
+	private AlumnoRepo alumnorepo;
 	
 	@Override
 	public Integer createTutor(TutorBean tutorBean) {
@@ -83,5 +88,30 @@ public class TutorServiceImp implements TutorService{
 		this.tutorrepository.delete(tutor);
 		return true;
 	}
-	
+
+	@Override
+	public List<TutorBean> getAlumnos() {
+		List<Tutor> alumnotutor = this.tutorrepository.findAll();
+		List<TutorBean> tutor = new ArrayList<>();
+		
+		
+		for (int y = 0; y<alumnotutor.size(); y++) {
+			TutorBean tutorbean = new TutorBean();
+			
+			tutorbean.setNombre(alumnotutor.get(y).getNombre());
+			
+			List<AlumnoBean> alumnos = new ArrayList<>();
+			for (int i = 0; i < alumnotutor.get(y).getAlumnos().size(); i++) {
+				AlumnoBean alumnobean = new AlumnoBean();
+				
+				alumnobean.setNameAlumno(alumnotutor.get(y).getAlumnos().get(i).getNameAlumno());
+				alumnobean.setIdAlumno(alumnotutor.get(y).getAlumnos().get(i).getIdAlumno());
+				
+			}
+			tutor.add(tutorbean);
+		}
+		
+		return tutor;
+	}
+
 }

@@ -18,7 +18,7 @@ public class Tutor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idTutor")
+	@Column(name = "id_tutor")
 	private int idTutor;
 	
 	@Column(name = "nombre", length = 100, nullable = false)
@@ -83,4 +83,15 @@ public class Tutor {
 		this.sexo = sexo;
 	}
 
+
+	public List<Alumno> getAlumnos() {
+		return alumnos;
+	}
+
+
+	public void setAlumnos(List<Alumno> alumnos) {
+		this.alumnos = alumnos;
+	}
+
+	
 }

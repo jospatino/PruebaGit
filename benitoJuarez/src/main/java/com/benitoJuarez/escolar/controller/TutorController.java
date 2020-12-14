@@ -54,4 +54,5 @@ public class TutorController {
 	public ResponseEntity<Boolean> borrar(@PathVariable("idtutor")Integer idTutor){
 		return new ResponseEntity<>(this.tutorService.delateTutor(idTutor),HttpStatus.OK);
 	}
+	
 }
