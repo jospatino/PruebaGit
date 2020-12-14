@@ -22,4 +22,5 @@ public interface AlumnoService {
 	
 	public List<AlumnoBean>  alumnodeudores();
 	
+	public Double promedioCurso ();
 }

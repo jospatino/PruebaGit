@@ -84,7 +84,7 @@ public class AlumnoImpl implements AlumnoService{
 		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
 		for (Alumno alumno : listaAlumnos) {
 			AlumnoBean alumnobean = new AlumnoBean();
-			
+			alumnobean.setIdAlumno(alumno.getIdAlumno());
 			alumnobean.setBecaAlumno(alumno.isBecaAlumno());
 			alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
 			alumnobean.setNameAlumno(alumno.getNameAlumno());
@@ -104,6 +104,7 @@ public class AlumnoImpl implements AlumnoService{
 	public Boolean updateAlumnos(AlumnoBean alumnoBean) {
 		
 		Alumno alumno = this.alumnorepo.findById(alumnoBean.getIdAlumno()).orElseThrow(null) ;
+		
 		alumno.setNameAlumno(alumnoBean.getNameAlumno());
 		alumno.setFechaNacAlumno(new Date(alumnoBean.getFechaNacAlumno()));
 		alumno.setSexoAlumno(alumnoBean.getSexoAlumno());
@@ -140,14 +141,15 @@ public class AlumnoImpl implements AlumnoService{
 		List<AlumnoBean> listaAlumnosBean = new ArrayList <> ();
 		for (Alumno alumno : listaAlumnos) {
 			AlumnoBean alumnobean = new AlumnoBean();
-			alumnobean.setBecaAlumno(alumno.isBecaAlumno());
-			alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
+			alumnobean.setIdAlumno(alumno.getIdAlumno());
 			alumnobean.setNameAlumno(alumno.getNameAlumno());
 			alumnobean.setFechaNacAlumno(alumno.getFechaNacAlumno().toString());
 			alumnobean.setPromedioAlumno(alumno.getPromedioAlumno());
 			alumnobean.setSexoAlumno(alumno.getSexoAlumno());
 			alumnobean.setIdTutor(alumno.getTutor().getIdTutor());
 			alumnobean.setIdPersonal(alumno.getPersonal().getIdPersonal());
+			alumnobean.setBecaAlumno(alumno.isBecaAlumno());
+			alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
 			
 			listaAlumnosBean.add(alumnobean);
 		}
@@ -161,7 +163,7 @@ public class AlumnoImpl implements AlumnoService{
 		for (Alumno alumno : listaAlumnos) {
 			AlumnoBean alumnobean = new AlumnoBean();
 			if (alumno.isBecaAlumno()) {
-				
+				alumnobean.setIdAlumno(alumno.getIdAlumno());
 				alumnobean.setBecaAlumno(alumno.isBecaAlumno());
 				alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
 				alumnobean.setNameAlumno(alumno.getNameAlumno());
@@ -184,7 +186,7 @@ public class AlumnoImpl implements AlumnoService{
 		for (Alumno alumno : listaAlumnos) {
 			AlumnoBean alumnobean = new AlumnoBean();
 			if (alumno.isDeudorAlumno()) {
-				
+				alumnobean.setIdAlumno(alumno.getIdAlumno());
 				alumnobean.setBecaAlumno(alumno.isBecaAlumno());
 				alumnobean.setDeudorAlumno(alumno.isDeudorAlumno());
 				alumnobean.setNameAlumno(alumno.getNameAlumno());
@@ -198,6 +200,20 @@ public class AlumnoImpl implements AlumnoService{
 			}
 		}
 		return listaAlumnosBean;
+	}
+
+	@Override
+	public Double promedioCurso() {
+		
+		List<Alumno> listaAlumnos = this.alumnorepo.findAll();
+		double promedio=0;
+		
+		for (Alumno alumno : listaAlumnos) {
+			promedio+= alumno.getPromedioAlumno();
+		}
+		
+		
+		return promedio/listaAlumnos.size();
 	}
 
 }

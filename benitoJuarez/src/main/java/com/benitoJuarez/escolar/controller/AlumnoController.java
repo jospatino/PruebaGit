@@ -67,4 +67,10 @@ public class AlumnoController   {
 	public ResponseEntity<List<AlumnoBean>> alumnodeudores (){
 		return new ResponseEntity<>(this.alumnoService.alumnodeudores(),HttpStatus.OK);
 	}
+	
+	@GetMapping("/promedio")
+	public ResponseEntity<Double> promedio (){
+		return new ResponseEntity<>(this.alumnoService.promedioCurso(),HttpStatus.OK);
+	}
+	
 }
