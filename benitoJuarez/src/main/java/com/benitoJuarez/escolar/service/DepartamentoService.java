@@ -16,5 +16,8 @@ public interface DepartamentoService {
 	
 	public Boolean deleteDepartamento(Integer idDepartamento);
 	
-	public Integer getNominaDepartamento(DepartamentoBean deptoBean);
+	public Float getNominaDepartamento();
+	
+	public Float getNominaDepartamento(Integer idDepartamento);
+	
 }

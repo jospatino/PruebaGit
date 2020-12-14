@@ -24,6 +24,9 @@ public class DepartamentoBean implements Serializable{
 	@NotNull
 	private float sueldoDepto;
 	
+	@NotNull
+	private float sueldoTotal;
+	
 	private int idpersonal;
 
 	public DepartamentoBean() {
@@ -65,6 +68,14 @@ public class DepartamentoBean implements Serializable{
 
 	public void setSueldoDepto(float sueldoDepto) {
 		this.sueldoDepto = sueldoDepto;
+	}
+	
+	public float getSueldoTotal() {
+		return sueldoTotal;
+	}
+
+	public void setSueldoTotal(float sueldoTotal) {
+		this.sueldoTotal = sueldoTotal;
 	}
 
 	public int getIdpersonal() {

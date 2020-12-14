@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.benitoJuarez.escolar.model.Departamento;
 import com.benitoJuarez.escolar.model.bean.DepartamentoBean;
 import com.benitoJuarez.escolar.repository.DepartamentoRepository;
+import com.benitoJuarez.escolar.repository.PersonalRepo;
 import com.benitoJuarez.escolar.service.DepartamentoService;
 
 @Service
@@ -17,6 +18,9 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 	
 	@Autowired
 	DepartamentoRepository deptoRepo;
+	
+	@Autowired
+	PersonalRepo personalRepo;
 
 	@Override
 	public Integer crearDepartamento(DepartamentoBean deptoBean) {
@@ -56,7 +60,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 			bean.setDescripcionDepto(depto.getDescripcionDpto());
 			bean.setSueldoDepto(depto.getSueldoDepto());
 			bean.setIdDepartamento(depto.getIdDepartamento());
-			
+					
 			deptobean.add(bean);
 		}
 		return deptobean;
@@ -64,7 +68,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
 	@Override
 	public Boolean updateDepartamento(DepartamentoBean deptoBean) {
-		Departamento depto = this.deptoRepo.findById(deptoBean.getIdpersonal()).orElseThrow(null);
+		Departamento depto = this.deptoRepo.findById(deptoBean.getIdDepartamento()).orElseThrow(null);
 		
 		depto.setNombreDepto(deptoBean.getNombreDepto());
 		depto.setDescripcionDpto(deptoBean.getDescripcionDepto());
@@ -82,10 +86,29 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 		return true;
 	}
 
-	@Override
-	public Integer getNominaDepartamento(DepartamentoBean deptoBean) {
+
+	public Float getNominaDepartamento() {
+		List<Departamento> deptolist = this.deptoRepo.findAll();
+		float resultado = 0;
+		DepartamentoBean bean = new DepartamentoBean ();		
+	
+		for(Departamento depto: deptolist) {
+			resultado = depto.getPersonales().size() * bean.getSueldoDepto();
+		}
 		
-		return null;
+		return resultado;
 	}
+
+	public Float getNominaDepartamento(Integer idDepartamento) {
+		Departamento depto = this.deptoRepo.findById(idDepartamento).orElseThrow(null);
+		DepartamentoBean bean = new DepartamentoBean();
+		float res = 0;
+		
+		res = depto.getPersonales().size() * bean.getSueldoDepto();
+				
+		return res;
+	}
+	
+	
 
 }
