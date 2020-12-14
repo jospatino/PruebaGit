@@ -30,7 +30,7 @@ public class Tutor {
 	@Column(name = "sexo", length = 20, nullable = false)
 	private String sexo;
 	
-	@OneToMany(mappedBy = "Alumno")
+	@OneToMany(mappedBy = "tutor")
 	private List<Alumno> alumnos;
 	
 	public Tutor() {

@@ -37,9 +37,8 @@ public class Personal {
 	private Departamento departamento;
 
 	//relacion agregada verificar ok 
-	@OneToMany(mappedBy = "Alumno")
+	@OneToMany(mappedBy = "personal")
 	private List<Alumno> alumnos;
-	
 	
 	public Personal() {
 		super();
@@ -88,6 +87,14 @@ public class Personal {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+	}
+
+	public List<Alumno> getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(List<Alumno> alumnos) {
+		this.alumnos = alumnos;
 	}
 
 }

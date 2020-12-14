@@ -158,4 +158,9 @@ public class HistorialServiceImpl implements HistorialService {
 		return bean;
 	}
 
+	@Override
+	public List<HistorialBean> alumnosReprobados() {
+		return null;
+	}
+
 }

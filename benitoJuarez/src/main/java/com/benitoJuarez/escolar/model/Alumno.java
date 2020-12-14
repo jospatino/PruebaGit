@@ -1,6 +1,8 @@
 package com.benitoJuarez.escolar.model;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,16 +22,22 @@ public class Alumno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_alumno")
 	private int idAlumno;
+	
 	@Column(name = "nombre",length = 60, nullable = false)
 	private String nameAlumno;
+	
 	@Column(name = "fecha_nacimiento", nullable = false)
 	private Date fechaNacAlumno;
+	
 	@Column(name = "sexo", length = 6, nullable = false)
 	private String sexoAlumno;
+	
 	@Column(name = "promedio", nullable = false)
 	private float promedioAlumno;
+	
 	@Column(name = "deudor", nullable = false)
 	private boolean deudorAlumno;
+	
 	@Column(name = "beca", nullable = false)
 	private boolean becaAlumno;
 	
@@ -40,7 +49,6 @@ public class Alumno {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_personal")
 	private Personal personal;
-	
 	
 	public Alumno() {
 		super();
@@ -124,7 +132,5 @@ public class Alumno {
 	public void setPersonal(Personal personal) {
 		this.personal = personal;
 	}
-	
-	
 	
 }	
