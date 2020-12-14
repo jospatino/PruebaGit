@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.benitoJuarez.escolar.model.bean.TutorBean;
+import com.benitoJuarez.escolar.service.AlumnoService;
 import com.benitoJuarez.escolar.service.TutorService;
 
 
@@ -27,6 +28,9 @@ public class TutorController {
 
 	@Autowired
 	TutorService tutorService;
+	
+	@Autowired
+	AlumnoService alumnoservice;
 	
 	@PostMapping("/guardar")
 	public ResponseEntity<Integer> guardar(@Valid@RequestBody TutorBean tutorBean){
@@ -39,7 +43,7 @@ public class TutorController {
 		
 	}
 	
-	@GetMapping("/guardar/{idtutor}")
+	@GetMapping("/buscar/{idtutor}")
 	public ResponseEntity<TutorBean> buscar(@PathVariable("idtutor")Integer idTutor){
 		return new ResponseEntity<>(this.tutorService.getTutorBean(idTutor),HttpStatus.OK);
 		

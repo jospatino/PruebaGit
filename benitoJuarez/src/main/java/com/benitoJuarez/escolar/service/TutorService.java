@@ -3,6 +3,7 @@ package com.benitoJuarez.escolar.service;
 import java.util.List;
 
 import com.benitoJuarez.escolar.model.Tutor;
+import com.benitoJuarez.escolar.model.bean.AlumnoBean;
 import com.benitoJuarez.escolar.model.bean.TutorBean;
 
 public interface TutorService {
@@ -24,5 +25,6 @@ public interface TutorService {
 	
 	//GET
 	public List<TutorBean>getAlumnos();
+	
 	
 }

@@ -57,17 +57,18 @@ public class TutorServiceImp implements TutorService{
 		List<Tutor> tutorList = this.tutorrepository.findAll();
 		List<TutorBean> tutorbeanlist = new ArrayList<>();
 		
-		for (int i = 0; i<tutorList.size(); i++) {
+		for (Tutor item : tutorList) {
 			TutorBean tutorbean = new TutorBean();
 			
-			tutorbean.setId_tutor(tutorList.get(i).getIdTutor());
-			tutorbean.setNombre(tutorList.get(i).getNombre());
-			tutorbean.setSexo(tutorList.get(i).getSexo());
-			tutorbean.setFechaNacimiento(tutorList.get(i).getFechaNacimiento().toString());
+			tutorbean.setId_tutor(item.getIdTutor());
+			tutorbean.setNombre(item.getNombre());
+			tutorbean.setSexo(item.getSexo());
+			tutorbean.setFechaNacimiento(item.getFechaNacimiento().toString());
 			
 			tutorbeanlist.add(tutorbean);
-			
 		}
+		
+
 		return tutorbeanlist;
 	}
 
@@ -94,25 +95,20 @@ public class TutorServiceImp implements TutorService{
 		List<Tutor> alumnotutor = this.tutorrepository.findAll();
 		List<TutorBean> tutor = new ArrayList<>();
 		
-		
 		for (int y = 0; y<alumnotutor.size(); y++) {
 			TutorBean tutorbean = new TutorBean();
-			
+			tutorbean.setId_tutor(alumnotutor.get(y).getIdTutor());
 			tutorbean.setNombre(alumnotutor.get(y).getNombre());
 			
-			List<AlumnoBean> alumnos = new ArrayList<>();
-			for (int i = 0; i < alumnotutor.get(y).getAlumnos().size(); i++) {
-				AlumnoBean alumnobean = new AlumnoBean();
-				
-				alumnobean.setNameAlumno(alumnotutor.get(y).getAlumnos().get(i).getNameAlumno());
-				alumnobean.setIdAlumno(alumnotutor.get(y).getAlumnos().get(i).getIdAlumno());
-				
-				
-				alumnos.add(alumnobean);
-				
-				
-			}
-		
+				List<AlumnoBean> alumnos = new ArrayList<>();
+				for (int i = 0; i < alumnotutor.get(y).getAlumnos().size(); i++) {
+					AlumnoBean alumnobean = new AlumnoBean();
+					
+					alumnobean.setNameAlumno(alumnotutor.get(y).getAlumnos().get(i).getNameAlumno());
+					alumnobean.setIdAlumno(alumnotutor.get(y).getAlumnos().get(i).getIdAlumno());
+					
+					alumnos.add(alumnobean);	
+				}
 			
 			tutorbean.setAlumno(alumnos);
 			tutor.add(tutorbean);
@@ -121,5 +117,6 @@ public class TutorServiceImp implements TutorService{
 		
 		return tutor;
 	}
+
 
 }
