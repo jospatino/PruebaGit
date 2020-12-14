@@ -1,45 +1,44 @@
-package com.benitoJuarez.escolar.model;
+package com.benitoJuarez.escolar.model.bean;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name ="alumno")
-public class Alumno {
+public class AlumnoBean implements Serializable {
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_alumno")
 	private int idAlumno;
-	@Column(name = "nombre",length = 60, nullable = false)
+	@Size(max = 100)
+	@NotNull
 	private String nameAlumno;
-	@Column(name = "fecha_nacimiento", nullable = false)
-	private Date fechaNacAlumno;
-	@Column(name = "sexo", length = 6, nullable = false)
+	
+	@Size(max = 10)
+	@NotNull
+	private String fechaNacAlumno;
+	@Size(max = 20)
+	@NotNull
 	private String sexoAlumno;
-	@Column(name = "promedio", nullable = false)
+	@NotNull
 	private float promedioAlumno;
-	@Column(name = "deudor", nullable = false)
+	@NotNull
 	private boolean deudorAlumno;
-	@Column(name = "beca", nullable = false)
+	@NotNull
 	private boolean becaAlumno;
 	
-	public Alumno() {
+	public AlumnoBean() {
 		super();
 	}
 
-	public Alumno(int idAlumno) {
+	public AlumnoBean(int idAlumno) {
 		super();
 		this.idAlumno = idAlumno;
 	}
-
-
 
 	public int getIdAlumno() {
 		return idAlumno;
@@ -57,11 +56,11 @@ public class Alumno {
 		this.nameAlumno = nameAlumno;
 	}
 
-	public Date getFechaNacAlumno() {
+	public String getFechaNacAlumno() {
 		return fechaNacAlumno;
 	}
 
-	public void setFechaNacAlumno(Date fechaNacAlumno) {
+	public void setFechaNacAlumno(String fechaNacAlumno) {
 		this.fechaNacAlumno = fechaNacAlumno;
 	}
 
@@ -97,4 +96,6 @@ public class Alumno {
 		this.becaAlumno = becaAlumno;
 	}
 	
-}	
+	
+
+}
