@@ -107,8 +107,16 @@ public class TutorServiceImp implements TutorService{
 				alumnobean.setNameAlumno(alumnotutor.get(y).getAlumnos().get(i).getNameAlumno());
 				alumnobean.setIdAlumno(alumnotutor.get(y).getAlumnos().get(i).getIdAlumno());
 				
+				
+				alumnos.add(alumnobean);
+				
+				
 			}
+		
+			
+			tutorbean.setAlumno(alumnos);
 			tutor.add(tutorbean);
+			
 		}
 		
 		return tutor;
